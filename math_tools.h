@@ -10,5 +10,8 @@ class Vec2f
 
 float dot(const Vec2f* v1, const Vec2f* v2);
 float lerp(float v, float l, float u);
+float smooth(float v, float l, float u);
+float clamp(float v, float l, float u);
+float cosInterpolate(float v, float l, float u);
 
 #endif
