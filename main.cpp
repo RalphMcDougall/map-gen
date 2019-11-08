@@ -1,7 +1,8 @@
 #include <iostream>
+#include <stdio.h>
 #include <string>
 #include <SDL2/SDL.h>
-#include "perlin.h"
+#include "world.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ SDL_Window *window = NULL;
 SDL_Surface *image = NULL;
 SDL_Texture *texture = NULL;
 
-PerlinGrid* pg = NULL;
+World* world = NULL;
 
 int main(void) 
 {
@@ -34,10 +35,10 @@ int main(void)
 
     image = SDL_CreateRGBSurface(0, SCREEN_WIDTH, SCREEN_HEIGHT, 32, 0, 0, 0, 0);
     
-    // Create Perlin noise object
-    log("Creating PerlinGrid");
-    pg = new PerlinGrid(128);
-    
+    // Create World object
+    log("Creating World");
+    world = new World(SCREEN_WIDTH, SCREEN_HEIGHT, 5, 17);
+
     writePixelData(image);
 
     texture = SDL_CreateTextureFromSurface(renderer, image);
@@ -69,7 +70,7 @@ int main(void)
     SDL_DestroyWindow(window);
     SDL_Quit();
 
-    free(pg);
+    free(world);
 
     log("Program ended");
     return EXIT_SUCCESS;
@@ -87,11 +88,16 @@ void writePixelData(SDL_Surface *image)
         for (int x = 0; x < SCREEN_WIDTH; ++x)
         {
             unsigned char* pixels = (unsigned char*) image->pixels;
-            int c = 128 + 128 * pg->getVal(x, y);//luRand(0, 256);
-            pixels[ 4 * (y * image->w + x) + 0 ] = c;
-            pixels[ 4 * (y * image->w + x) + 1 ] = c;
-            pixels[ 4 * (y * image->w + x) + 2 ] = c;
-            pixels[ 4 * (y * image->w + x) + 3 ] = 255;
+            unsigned int c = world->getColour(x, y);
+            int r = (c & 0xFF0000) >> 16;
+            int g = (c & 0x00FF00) >> 8;
+            int b = (c & 0x0000FF) >> 0;
+            int a = 255;
+            
+            pixels[ 4 * (y * image->w + x) + 0 ] = b;
+            pixels[ 4 * (y * image->w + x) + 1 ] = g;
+            pixels[ 4 * (y * image->w + x) + 2 ] = r; 
+            pixels[ 4 * (y * image->w + x) + 3 ] = c;
         }
     }
 }

@@ -9,16 +9,20 @@ float xyNoise(long long xc, long long yc);
 
 class PerlinGrid
 {
-    int scale;
-    public:
-    Vec2f* VECTOR_LOOKUP[8] = {new Vec2f(1, 0), new Vec2f(0, 1), new Vec2f(-1, 0), new Vec2f(0, -1), new Vec2f( 0.70710678118,  0.70710678118), new Vec2f( -0.70710678118,  0.70710678118), new Vec2f( 0.70710678118,  -0.70710678118), new Vec2f( -0.70710678118,  -0.70710678118)};
+    private:
+    float scale;
+    long long seed;
 
-    PerlinGrid(int _scale);
+    int xyRand(long long xc, long long yc);
+    float xyNoise(long long xc, long long yc);
+
+    public:
+    PerlinGrid(float _scale, long long _seed);
     ~PerlinGrid();
 
     float getVal(float x, float y);
 
-    Vec2f* getNodeVector(int x, int y);
+    float getScale();
 };
 
 #endif
