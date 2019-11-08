@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
+#include "perlin.h"
 
 using namespace std;
 
@@ -31,9 +32,10 @@ int main(void)
 
     image = SDL_CreateRGBSurface(0, SCREEN_WIDTH, SCREEN_HEIGHT, 32, 0, 0, 0, 0);
     writePixelData(image);
-    
 
     texture = SDL_CreateTextureFromSurface(renderer, image);
+
+    cout << xyRand(0, 0) << endl;
 
     log("Starting GUI loop");
     bool running = true;
