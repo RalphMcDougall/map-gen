@@ -1,4 +1,5 @@
 map-gen
+main.o
 perlin.o
 math_tools.o
-main.o
+world.o
