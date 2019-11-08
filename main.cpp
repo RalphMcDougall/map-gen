@@ -35,8 +35,6 @@ int main(void)
 
     texture = SDL_CreateTextureFromSurface(renderer, image);
 
-    cout << xyRand(0, 0) << endl;
-
     log("Starting GUI loop");
     bool running = true;
     while (running)
@@ -73,13 +71,6 @@ void log(const string msg)
     cout << msg << endl;
 }
 
-int getRand(int lower, int upper)
-{
-    // return a random number in the range [lower, upper)
-    int r = rand();
-    return lower + r % (upper - lower);
-}
-
 void writePixelData(SDL_Surface *image)
 {
     for (int y = 0; y < SCREEN_HEIGHT; ++y)
@@ -87,7 +78,7 @@ void writePixelData(SDL_Surface *image)
         for (int x = 0; x < SCREEN_WIDTH; ++x)
         {
             unsigned char* pixels = (unsigned char*) image->pixels;
-            int c = getRand(0, 256);
+            int c = luRand(0, 256);
             pixels[ 4 * (y * image->w + x) + 0 ] = c;
             pixels[ 4 * (y * image->w + x) + 1 ] = c;
             pixels[ 4 * (y * image->w + x) + 2 ] = c;

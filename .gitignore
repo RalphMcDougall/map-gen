@@ -1,3 +1,4 @@
 map-gen
 perlin.o
 main.o
+math_tools.o
