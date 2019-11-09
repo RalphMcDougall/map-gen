@@ -21,6 +21,9 @@ SDL_Texture *texture = NULL;
 
 World* world = NULL;
 
+long long WORLD_SEED = 17;
+int NUM_NOISE_LAYERS = 8;
+
 int main(void) 
 {
     log("Program started");
@@ -37,7 +40,7 @@ int main(void)
     
     // Create World object
     log("Creating World");
-    world = new World(SCREEN_WIDTH, SCREEN_HEIGHT, 5, 17);
+    world = new World(SCREEN_WIDTH, SCREEN_HEIGHT, NUM_NOISE_LAYERS, WORLD_SEED);
 
     writePixelData(image);
 
@@ -55,6 +58,21 @@ int main(void)
             if (event.type == SDL_QUIT)
             {
                 running = false;
+            }
+            else if (event.type == SDL_KEYDOWN)
+            {
+                if (event.key.keysym.sym == SDLK_1)
+                {
+                    world->setColourMode(1);
+                    writePixelData(image);
+                    texture = SDL_CreateTextureFromSurface(renderer, image);
+                }
+                else if (event.key.keysym.sym == SDLK_2)
+                {
+                    world->setColourMode(2);
+                    writePixelData(image);
+                    texture = SDL_CreateTextureFromSurface(renderer, image);
+                }
             }
         } 
 
@@ -83,10 +101,13 @@ void log(const string msg)
 
 void writePixelData(SDL_Surface *image)
 {
+    log("Writing pixel data");
+    
     for (int y = 0; y < SCREEN_HEIGHT; ++y)
     {
         for (int x = 0; x < SCREEN_WIDTH; ++x)
         {
+            
             unsigned char* pixels = (unsigned char*) image->pixels;
             unsigned int c = world->getColour(x, y);
             int r = (c & 0xFF0000) >> 16;

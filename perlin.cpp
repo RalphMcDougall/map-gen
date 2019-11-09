@@ -1,6 +1,7 @@
 #include "math_tools.h"
 #include "perlin.h"
 #include <iostream>
+#include <map>
 
 int luRand(int lower, int upper)
 {
@@ -21,9 +22,13 @@ int PerlinGrid::xyRand(long long xc, long long yc)
 float PerlinGrid::xyNoise(long long xc, long long yc)
 {
     // Get the noise value in the range [-1, 1] for (x, y)
-
-    float r = 1.0 * xyRand(xc, yc) / INT32_MAX;
-    return 2 * r - 1;
+    std::pair<long long, long long> p = {xc, yc};
+    if (precomputed.count(p) == 0)
+    {
+        float r = 1.0 * xyRand(xc, yc) / INT32_MAX;
+        precomputed[p] = 2 * r - 1;
+    }
+    return precomputed[p];
 }
 
 PerlinGrid::PerlinGrid(float _scale, long long _seed)

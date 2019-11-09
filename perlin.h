@@ -2,6 +2,7 @@
 #define _PERLIN 1
 
 #include "math_tools.h"
+#include <map>
 
 int luRand(int lower, int upper);
 int xyRand(long long xc, long long yc);
@@ -15,6 +16,7 @@ class PerlinGrid
 
     int xyRand(long long xc, long long yc);
     float xyNoise(long long xc, long long yc);
+    std::map< std::pair<int, int>, float > precomputed;
 
     public:
     PerlinGrid(float _scale, long long _seed);
