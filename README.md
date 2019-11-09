@@ -3,7 +3,10 @@
 
 An experiment in terrain generation with Perlin noise.
 
-## Getting started
+## Running out-of-the-box
+Clone the repository and then run the map-gen file. It may be necessary to change the file name to "map-gen.exe" for Windows devices.
+
+## Development
 
 ### Prerequisites
 This project requires SDL2 to be installed on your system. If you are using a Linux distribution, this can be done with:
