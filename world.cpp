@@ -31,8 +31,13 @@ World::World(int _width, int _height, int _numLayers, long long _seed)
     numBiomes = 8;
     biomes = (Biome**) malloc(numBiomes * sizeof(Biome*));
 
-    biomes[0] = new Biome(0x0000FF, -100); // Ocean
-    biomes[1] = new Biome(0x00FF00, 0); // Ground
+    biomes[0] = new Biome(0x091798, -100); // Deep Ocean
+    biomes[1] = new Biome(0x2A3CE5, -0.5); // Shallow Sea
+    biomes[2] = new Biome(0xE7E976, 0); // Beach
+    biomes[3] = new Biome(0x4CF025, 0.1); // Plains
+    biomes[4] = new Biome(0x185C08, 0.5); // Forest
+    biomes[5] = new Biome(0x362F2D, 0.75); // Mountain
+    biomes[6] = new Biome(0xFFFFFF, 1.25); // Snowy peak
 
 }
 World::~World()

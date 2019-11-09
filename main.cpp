@@ -3,6 +3,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include "world.h"
+#include <time.h>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ SDL_Texture *texture = NULL;
 
 World* world = NULL;
 
-long long WORLD_SEED = 17;
+long long WORLD_SEED = time(NULL);
 int NUM_NOISE_LAYERS = 8;
 
 int main(void) 
