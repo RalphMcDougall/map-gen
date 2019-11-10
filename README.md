@@ -9,7 +9,7 @@ Clone the repository and then run the map-gen file. It may be necessary to chang
 ## Development
 
 ### Prerequisites
-This project requires SDL2 to be installed on your system. If you are using a Linux distribution, this can be done with:
+This project requires SDL2 to be installed on your system. If you are using Ubuntu, this can be done with:
 ```
 sudo apt-get install libsdl2-dev
 ```
@@ -19,12 +19,12 @@ Instructions for other operation systems can be found on the tutorial on [LazyFo
 Clone the repository to your local device. Take not of where it has been installed.
 
 ### Compilation
-If you are using a Linux distribution, open a terminal in the folder where the project was installed, then run:
+If you are using Ubuntu, open a terminal in the folder where the project was installed, then run:
 ```
 ./compile.sh
 ```
 ### Running
-If you are using a Linux distribution, run the following in the terminal:
+If you are using Ubuntu, run the following in the terminal:
 ```
 ./map-gen
 ```
