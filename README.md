@@ -1,7 +1,7 @@
 # map-gen
 ![Example map](images/img1.png?raw=true "Example map")
 
-An experiment in terrain generation with Perlin noise.
+An experiment in terrain generation with value noise.
 
 ## Running out-of-the-box
 Clone the repository and then run the map-gen file. It may be necessary to change the file name to "map-gen.exe" for Windows devices.
