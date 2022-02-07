@@ -16,13 +16,13 @@ World::World(int _width, int _height, int _numLayers, long long _seed)
     seed = _seed;
 
     valMap = (float*) malloc(width * height * sizeof(float));
-    gridLayers = (PerlinGrid**) malloc(numLayers * sizeof(PerlinGrid*) );
+    gridLayers = (ValueNoiseGrid**) malloc(numLayers * sizeof(ValueNoiseGrid*) );
 
     int scale = START_SCALE;
 
     for (int i = 0; i < numLayers; ++i)
     {
-        gridLayers[i] = new PerlinGrid(scale, seed + i);
+        gridLayers[i] = new ValueNoiseGrid(scale, seed + i);
         scale /= 2;
     }
     buildWorld();

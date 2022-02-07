@@ -1,7 +1,7 @@
 #ifndef _WORLD
 #define _WORLD 1
 
-#include "perlin.h"
+#include "valuenoise.h"
 
 class Biome
 {
@@ -19,7 +19,7 @@ class World
     int width, height, numLayers;
     long long seed;
     float * valMap;
-    PerlinGrid** gridLayers;
+    ValueNoiseGrid** gridLayers;
     float maxV, minV;
 
     int colourMode = 1;

@@ -1,5 +1,5 @@
 map-gen
 main.o
-perlin.o
+valuenoise.o
 math_tools.o
 world.o

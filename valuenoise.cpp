@@ -1,5 +1,5 @@
 #include "math_tools.h"
-#include "perlin.h"
+#include "valuenoise.h"
 #include <iostream>
 #include <map>
 
@@ -10,7 +10,7 @@ int luRand(int lower, int upper)
     return lower + r % (upper - lower);
 }
 
-int PerlinGrid::xyRand(long long xc, long long yc)
+int ValueNoiseGrid::xyRand(long long xc, long long yc)
 {
     // Return a random integer for a given x and y coordinate. This should be a pure function.
     const long long FACTOR = 2038074743; // Magic prime constant
@@ -19,7 +19,7 @@ int PerlinGrid::xyRand(long long xc, long long yc)
     return rand();
 }
 
-float PerlinGrid::xyNoise(long long xc, long long yc)
+float ValueNoiseGrid::xyNoise(long long xc, long long yc)
 {
     // Get the noise value in the range [-1, 1] for (x, y)
     std::pair<long long, long long> p = {xc, yc};
@@ -31,18 +31,18 @@ float PerlinGrid::xyNoise(long long xc, long long yc)
     return precomputed[p];
 }
 
-PerlinGrid::PerlinGrid(float _scale, long long _seed)
+ValueNoiseGrid::ValueNoiseGrid(float _scale, long long _seed)
 {
     scale = _scale;
     seed = _seed;
 }
 
-PerlinGrid::~PerlinGrid()
+ValueNoiseGrid::~ValueNoiseGrid()
 {
     
 }
 
-float PerlinGrid::getVal(float x, float y)
+float ValueNoiseGrid::getVal(float x, float y)
 {
     x /= scale;
     y /= scale;
@@ -68,7 +68,7 @@ float PerlinGrid::getVal(float x, float y)
     return v;
 }
 
-float PerlinGrid::getScale()
+float ValueNoiseGrid::getScale()
 {
     return scale;
 }
